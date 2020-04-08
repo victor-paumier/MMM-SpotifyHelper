@@ -37,14 +37,13 @@ Edit your `config/config.js` file and add a new object to the `modules`:
 ### Urls options:
 | Option                | Description
 | --------------------- | -----------
-| `title`               | The title of the URI. Used in the notification.
-| `type`                | The type of URI. <br> <br> **Possible values:** `album`, `artist`, `playlist` or `track`
-| `uri`                 | The URI of the album, artist, playlist or track  <br> <br> **Required**
+| `title`               | The title of the URI. Used in the notification. <br> <br> **Optional**
+| `uri`                 | The URI of the album, artist, playlist or track. <br> <br> **Required**
 
 ## Control with notification
 - `SPOTIFY_HELPER_VOLUME` : setting volume of current playback. Use `UP` to increase or `DOWN` to decrease 
 ```
-  this.sendNotification("SPOTIFY_VOLUME", 'UP')
+  this.sendNotification("SPOTIFY_HELPER_VOLUME", 'UP')
 ```
 - `SPOTIFY_HELPER_SOURCE` : Change the Spotify URI. Use `NEXT` to load the next URI or `PREVIOUS` to load the previous one
 ```

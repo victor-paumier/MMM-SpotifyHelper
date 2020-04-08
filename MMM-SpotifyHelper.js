@@ -63,13 +63,20 @@ Module.register("MMM-SpotifyHelper", {
 
 		var currentUrl = this.config.urls[this.currentUrlId];
 		if (currentUrl !== 'undefined') {
-			var payload = (currentUrl.type === 'track')
-				? {"uris": ['spotify:' + currentUrl.type + ':' + currentUrl.uri]}
-				: {"context_uri":'spotify:' + currentUrl.type + ':' + currentUrl.uri}
+			var type = currentUrl.uri.match(/(?<=^spotify:)(\w+)(?:)/g)[0];
+
+			var payload = (type === 'track')
+				? {"uris": [currentUrl.uri]}
+				: {"context_uri": currentUrl.uri}
 			;
 
 			this.sendNotification("SPOTIFY_PLAY", payload);
-			this.showNotif(currentUrl.type + ' ' + currentUrl.title+ ' Started');
+
+			var message = 'title' in currentUrl
+				? type + ' ' + currentUrl.title
+				: currentUrl.uri
+			;
+			this.showNotif(message+ ' Started');
 		}
 	},
 
